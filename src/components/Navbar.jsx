@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
+import { ACADEMY } from '../seo'
 
 const links = [
   { to: '/', label: 'Home', end: true },
@@ -31,6 +32,12 @@ export default function Navbar() {
               {l.label}
             </NavLink>
           ))}
+
+          {/* The course store lives on its own subdomain, so this is a plain
+              anchor rather than a router link. */}
+          <a href={ACADEMY} onClick={() => setOpen(false)}>
+            Courses
+          </a>
         </nav>
 
         <div className="nav-cta">

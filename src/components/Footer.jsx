@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { contact, services } from '../data/site'
+import { ACADEMY } from '../seo'
 import Icon from './Icons'
 
 export default function Footer() {
@@ -31,6 +32,7 @@ export default function Footer() {
             <ul>
               <li><Link to="/about">About Us</Link></li>
               <li><Link to="/services">Services</Link></li>
+              <li><a href={ACADEMY}>Online Courses</a></li>
               <li><Link to="/portfolio">Portfolio</Link></li>
               <li><Link to="/contact">Contact Us</Link></li>
             </ul>

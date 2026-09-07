@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop, { ScrollReset } from './components/ScrollToTop'
+import Seo from './components/Seo'
 import Home from './pages/Home'
 import Services from './pages/Services'
 import Portfolio from './pages/Portfolio'
@@ -12,6 +13,7 @@ import NotFound from './pages/NotFound'
 export default function App() {
   return (
     <>
+      <Seo />
       <ScrollReset />
       <Navbar />
       <main>
