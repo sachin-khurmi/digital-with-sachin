@@ -8,38 +8,51 @@ export default function Home() {
     <>
       <section className="hero">
         <div className="container">
-          <div className="hero-inner">
-            <h1>
-              Digital Marketing That Drives
-              <span>Real Growth</span>
-            </h1>
-            <p className="lead">
-              From strategy to execution, I help businesses attract the right audience and grow
-              online.
-            </p>
-            <div className="hero-actions">
-              <a
-                className="btn btn-primary"
-                href={contact.whatsapp}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Get Free Consultation
-                <Icon name="arrowRight" size={18} />
-              </a>
-              <Link className="btn btn-ghost" to="/services">
-                View Services
-              </Link>
+          <div className="hero-grid">
+            <div className="hero-inner">
+              <h1>
+                Digital Marketing
+                <br />
+                That Drives
+                <span>Real Growth</span>
+              </h1>
+              <p className="lead">
+                From Strategy to Execution, I help Businesses attract the right audience and grow
+                online.
+              </p>
+              <div className="hero-actions">
+                <a
+                  className="btn btn-primary"
+                  href={contact.whatsapp}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Get Free Consultation
+                </a>
+              </div>
+            </div>
+
+            <div className="hero-media">
+              <img src="/img/hero.png" alt="Sachin Khurmi, digital marketing consultant" />
             </div>
           </div>
+        </div>
 
-          <div className="stats">
-            {stats.map((s) => (
-              <div className="stat" key={s.label}>
-                <b>{s.value}</b>
-                <span>{s.label}</span>
-              </div>
-            ))}
+        <div className="stats-strip">
+          <div className="container">
+            <div className="stats">
+              {stats.map((s) => (
+                <div className="stat" key={s.label}>
+                  <span className="stat-icon">
+                    <Icon name={s.icon} size={44} />
+                  </span>
+                  <div className="stat-text">
+                    <b>{s.value}</b>
+                    <span>{s.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

@@ -1,13 +1,12 @@
 import { useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { contact } from '../data/site'
 
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/services', label: 'Services' },
   { to: '/portfolio', label: 'Portfolio' },
-  { to: '/about', label: 'About Us' },
   { to: '/contact', label: 'Contact Us' },
+  { to: '/about', label: 'About Us' },
 ]
 
 export default function Navbar() {
@@ -17,8 +16,7 @@ export default function Navbar() {
     <header className="nav">
       <div className="container nav-inner">
         <Link to="/" className="brand" onClick={() => setOpen(false)}>
-          <span className="brand-mark">DS</span>
-          Digital With Sachin
+          <img src="/img/logo.png" alt="Digital With Sachin" />
         </Link>
 
         <nav className={`nav-links ${open ? 'open' : ''}`}>
@@ -36,9 +34,9 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-cta">
-          <a className="btn btn-primary" href={contact.whatsapp} target="_blank" rel="noreferrer">
-            Free Consultation
-          </a>
+          <Link className="btn btn-white" to="/contact">
+            Download Brochure
+          </Link>
           <button
             className="burger"
             onClick={() => setOpen((v) => !v)}

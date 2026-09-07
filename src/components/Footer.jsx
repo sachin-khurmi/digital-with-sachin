@@ -8,13 +8,10 @@ export default function Footer() {
       <div className="container">
         <div className="footer-grid">
           <div className="footer-brand">
-            <div className="brand" style={{ color: '#fff' }}>
-              <span className="brand-mark">DS</span>
-              Digital With Sachin
-            </div>
+            <img src="/img/logo.png" alt="Digital With Sachin" />
             <p>
-              Smart Strategies. Real Results. Helping businesses grow online with result-driven
-              digital marketing.
+              <span className="footer-tagline">Smart Strategies. Real Results.</span> Helping
+              businesses grow online with result-driven digital marketing.
             </p>
             <div className="socials">
               <a href={contact.instagram} target="_blank" rel="noreferrer" aria-label="Instagram">

@@ -14,9 +14,10 @@ export const contact = {
 }
 
 export const stats = [
-  { value: '10+', label: 'Projects Completed' },
-  { value: '5+', label: 'Industries Served' },
-  { value: '100%', label: 'Clients Satisfaction' },
+  { value: '10+', label: 'Projects Completed', icon: 'network' },
+  { value: '5+', label: 'Industries Served', icon: 'industry' },
+  { value: '100%', label: 'Clients Satisfaction', icon: 'handshake' },
+  { value: 'Results', label: 'Driven Approach', icon: 'checklist' },
 ]
 
 export const services = [

@@ -68,7 +68,8 @@ export default function Services() {
       </section>
 
       <CTA
-        title="Ready to Take Your Business to the Next Level?"
+        title="Ready to Take Your Business to the"
+        highlight="Next Level?"
         text="Let's build a digital strategy that drives real results. Get a free consultation and a customized plan for your business."
       />
     </>

@@ -41,9 +41,14 @@ export default function About() {
 
             <div className="grid" style={{ gap: '1rem' }}>
               {stats.map((s) => (
-                <div className="stat" key={s.label} style={{ textAlign: 'left', padding: '1.4rem 1.6rem' }}>
-                  <b>{s.value}</b>
-                  <span>{s.label}</span>
+                <div className="card stat" key={s.label} style={{ padding: '1.4rem 1.6rem' }}>
+                  <span className="stat-icon">
+                    <Icon name={s.icon} size={34} />
+                  </span>
+                  <div className="stat-text">
+                    <b>{s.value}</b>
+                    <span>{s.label}</span>
+                  </div>
                 </div>
               ))}
             </div>
@@ -99,7 +104,8 @@ export default function About() {
       </section>
 
       <CTA
-        title="Let's Build Something Amazing Together!"
+        title="Let's Build Something"
+        highlight="Amazing Together!"
         text="Have a project in mind? Let's discuss how we can grow your business online."
       />
     </>

@@ -151,6 +151,58 @@ const shapes = {
       <path d="M9 18c-1 1.5-1 3-1 3s1.5 0 3-1M15 18c1 1.5 1 3 1 3s-1.5 0-3-1" />
     </>
   ),
+
+  /* --- Solid stat-bar icons (filled, gold on black) --- */
+  network: (
+    <g fill="currentColor" stroke="none">
+      <rect x="1" y="8.5" width="6" height="6" rx="1" />
+      <rect x="16.5" y="2" width="6.5" height="5" rx="1" />
+      <rect x="16.5" y="16" width="6.5" height="5" rx="1" />
+      <path d="M7.6 11.2h3.6V5.7a1 1 0 0 1 1-1h3.7v1.9h-2.9v10.9h2.9v1.9h-3.7a1 1 0 0 1-1-1v-5.5H7.6Z" />
+    </g>
+  ),
+  industry: (
+    <g fill="currentColor" stroke="none">
+      <path d="M3 21V9.6a.6.6 0 0 1 .95-.49l4.6 3.3V9.6a.6.6 0 0 1 .95-.49l4.6 3.3V3.6a.6.6 0 0 1 .6-.6h4.7a.6.6 0 0 1 .6.6V21Z" />
+    </g>
+  ),
+  handshake: (
+    <>
+      {/* solid cuffs on both sides */}
+      <g fill="currentColor" stroke="none">
+        <path d="M.6 7.4h4.3v10.3H.6a.6.6 0 0 1-.6-.6V8a.6.6 0 0 1 .6-.6Z" />
+        <path d="M19.1 7.4h4.3a.6.6 0 0 1 .6.6v9.1a.6.6 0 0 1-.6.6h-4.3Z" />
+      </g>
+      {/* clasped hands, drawn as an outline like the reference */}
+      <g
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M4.9 9.1 7.7 6.2h8.6l2.8 2.9" />
+        <path d="m10 7.3-2.5 2.6a1.8 1.8 0 0 0 2.55 2.55l1.4-1.4 4.75 4.5" />
+        <path d="M4.9 15.9h1.3l2.7 2.5a1.4 1.4 0 0 0 1.95-.1l.8.75a1.4 1.4 0 0 0 1.95-.1l.85.8a1.4 1.4 0 0 0 1.95-.1l2.15-2.45h1.1" />
+      </g>
+    </>
+  ),
+  checklist: (
+    <g fill="currentColor" stroke="none">
+      <path d="M2.6 6.9 1.2 5.5.1 6.6l2.5 2.5 4.3-4.3-1.1-1.1Z" />
+      <path d="M2.6 16.4 1.2 15l-1.1 1.1 2.5 2.5 4.3-4.3-1.1-1.1Z" />
+      <rect x="9.5" y="4.2" width="14" height="2.6" rx="1.3" />
+      <rect x="9.5" y="10.7" width="14" height="2.6" rx="1.3" />
+      <rect x="9.5" y="17.2" width="14" height="2.6" rx="1.3" />
+      <circle cx="3.2" cy="12" r="1.6" />
+    </g>
+  ),
+  download: (
+    <>
+      <path d="M12 4v10M8 10.5l4 4 4-4" />
+      <path d="M5 18.5h14" />
+    </>
+  ),
 }
 
 export default Icon
