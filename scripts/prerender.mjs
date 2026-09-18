@@ -80,6 +80,20 @@ for (const { path } of indexableRoutes) {
   console.log(`prerendered ${path}`)
 }
 
+// 404.html. Vercel serves this with a real 404 status for any path that is not
+// one of the files above — which is why vercel.json no longer rewrites every
+// request to the home page. Without it, a mistyped URL answered 200 with the
+// home page's markup, so Google saw the home page on endlessly many URLs and
+// counted them as soft 404s.
+{
+  const meta = metaFor('/404')
+  const html = shell
+    .replace('</head>', `${headFor(meta)}\n  </head>`)
+    .replace('<div id="root"></div>', `<div id="root">${render('/404')}</div>`)
+  await writeFile(join(dist, '404.html'), html, 'utf8')
+  console.log('prerendered 404.html')
+}
+
 const lastmod = new Date().toISOString().slice(0, 10)
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

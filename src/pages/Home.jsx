@@ -10,6 +10,10 @@ export default function Home() {
         <div className="container">
           <div className="hero-grid">
             <div className="hero-inner">
+              {/* The brand name in the hero, so the page a visitor lands on for
+                  "Digital With Sachin" says so above the fold — the H1 alone
+                  never carried the name. */}
+              <span className="eyebrow">Digital With Sachin</span>
               <h1>
                 Digital Marketing
                 <br />

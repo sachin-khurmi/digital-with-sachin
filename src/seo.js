@@ -38,7 +38,7 @@ const org = {
   image: OG_IMAGE,
   email: contact.email,
   telephone: contact.phone,
-  founder: { '@type': 'Person', name: 'Sachin Khurmi' },
+  founder: { '@id': `${ORIGIN}/#sachin-khurmi` },
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'SCO 15, Sector 86',
@@ -59,6 +59,47 @@ const org = {
   sameAs: [contact.instagram],
   subOrganization: { '@id': `${ACADEMY}/#organization` },
 }
+
+/**
+ * Everything else points at the organization by id instead of describing it
+ * again. Repeating the full node on /about and /contact gave three different
+ * definitions of one @id and made those pages look as much like the brand's
+ * home as the home page did — which is exactly what we do not want when
+ * someone searches the brand name.
+ */
+const orgRef = { '@id': `${ORIGIN}/#organization` }
+
+const website = {
+  '@type': 'WebSite',
+  '@id': `${ORIGIN}/#website`,
+  url: `${ORIGIN}/`,
+  name: 'Digital With Sachin',
+  alternateName: ['Digital With Sachin Marketing Agency', 'DigitalWithSachin'],
+  inLanguage: 'en-IN',
+  publisher: orgRef,
+}
+
+const websiteRef = { '@id': `${ORIGIN}/#website` }
+
+const founder = {
+  '@type': 'Person',
+  '@id': `${ORIGIN}/#sachin-khurmi`,
+  name: 'Sachin Khurmi',
+  jobTitle: 'Digital Marketing Consultant',
+  worksFor: orgRef,
+  url: `${ORIGIN}/about`,
+}
+
+/** One WebPage node per route, tying the page to the site and the brand. */
+const page = (path, name, extra = {}) => ({
+  '@type': 'WebPage',
+  '@id': `${ORIGIN}${path}#webpage`,
+  url: `${ORIGIN}${path}`,
+  name,
+  isPartOf: websiteRef,
+  inLanguage: 'en-IN',
+  ...extra,
+})
 
 const crumbs = (trail) => ({
   '@type': 'BreadcrumbList',
@@ -109,15 +150,20 @@ export function metaFor(pathname) {
       title: 'Digital With Sachin | Digital Marketing Agency in Mohali, Punjab',
       description:
         'Digital marketing that drives real growth. SEO, social media marketing, Meta Ads, Google Ads, website development and graphic designing by Sachin Khurmi, Mohali. Serving PAN India.',
+      // The home page is the only page that defines the organization, the
+      // website and the founder. Every other route refers back to these ids,
+      // so Google has one obvious page to show for the brand name.
       jsonLd: [
         org,
         academy,
+        founder,
+        website,
         {
-          '@type': 'WebSite',
-          '@id': `${ORIGIN}/#website`,
-          url: `${ORIGIN}/`,
-          name: 'Digital With Sachin',
-          publisher: { '@id': `${ORIGIN}/#organization` },
+          ...page('/', 'Digital With Sachin | Digital Marketing Agency in Mohali, Punjab', {
+            about: orgRef,
+            primaryImageOfPage: OG_IMAGE,
+          }),
+          '@type': ['WebPage', 'CollectionPage'],
         },
         serviceCatalog,
       ],
@@ -130,7 +176,11 @@ export function metaFor(pathname) {
       title: 'Digital Marketing Services | SEO, Meta Ads & Google Ads | Digital With Sachin',
       description:
         'Six services built around measurable growth: SEO, social media marketing, Meta Ads, Google Ads, website development and graphic designing. Based in Mohali, working PAN India.',
-      jsonLd: [crumbs([['Home', '/'], ['Services', '/services']]), serviceCatalog],
+      jsonLd: [
+        page('/services', 'Digital Marketing Services', { about: orgRef }),
+        crumbs([['Home', '/'], ['Services', '/services']]),
+        serviceCatalog,
+      ],
     }
   }
 
@@ -140,7 +190,10 @@ export function metaFor(pathname) {
       title: 'Portfolio | Client Work by Digital With Sachin',
       description:
         'Websites, ad campaigns and brand creatives delivered for clients across industries by Digital With Sachin, Mohali.',
-      jsonLd: [crumbs([['Home', '/'], ['Portfolio', '/portfolio']])],
+      jsonLd: [
+        page('/portfolio', 'Portfolio', { about: orgRef }),
+        crumbs([['Home', '/'], ['Portfolio', '/portfolio']]),
+      ],
     }
   }
 
@@ -150,7 +203,17 @@ export function metaFor(pathname) {
       title: 'About Sachin Khurmi | Digital With Sachin, Mohali',
       description:
         'Digital With Sachin is a Mohali-based digital marketing agency run by Sachin Khurmi, built on honest communication, customized strategy and long-term client partnerships.',
-      jsonLd: [crumbs([['Home', '/'], ['About', '/about']]), org],
+      // AboutPage, not a second copy of the organization: this page is *about*
+      // the brand, it is not the brand's main page.
+      jsonLd: [
+        {
+          ...page('/about', 'About Digital With Sachin'),
+          '@type': 'AboutPage',
+          about: orgRef,
+          mainEntity: { '@id': `${ORIGIN}/#sachin-khurmi` },
+        },
+        crumbs([['Home', '/'], ['About', '/about']]),
+      ],
     }
   }
 
@@ -159,9 +222,15 @@ export function metaFor(pathname) {
       ...base,
       title: 'Contact Digital With Sachin | Digital Marketing Agency, Mohali',
       description: `Talk to Sachin Khurmi about your project. Call ${contact.phone}, message on WhatsApp, or visit ${contact.address}.`,
+      // ProfessionalService is already a LocalBusiness, so the home page's
+      // organization node covers the NAP details; this page only points at it.
       jsonLd: [
+        {
+          ...page('/contact', 'Contact Digital With Sachin'),
+          '@type': 'ContactPage',
+          about: orgRef,
+        },
         crumbs([['Home', '/'], ['Contact', '/contact']]),
-        { ...org, '@type': ['ProfessionalService', 'LocalBusiness'] },
       ],
     }
   }
