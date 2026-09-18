@@ -6,6 +6,11 @@
       "continue": true
     },
     { "src": "/sitemap.xml", "headers": { "content-type": "application/xml" }, "continue": true },
+
+    { "src": "/index.html", "status": 308, "headers": { "Location": "/" } },
+    { "src": "/(.+)/index.html", "status": 308, "headers": { "Location": "/$1" } },
+    { "src": "/(.+)/$", "status": 308, "headers": { "Location": "/$1" } },
+
     { "handle": "filesystem" },
     { "src": "/.*", "status": 404, "dest": "/404.html" }
   ]
